@@ -39,24 +39,22 @@ class Home extends React.Component {
                     <Header />
                     <div className='invert-bg'>
                         <div className='container'>
-
-                                <div className='row'>
-                                    {talks.map((talk, talkIndex) => 
-                                        <div className='col-lg-3 col-sm-6 mb-3' key={talkIndex}>
-                                            <div className='card h-100' style={{border: '0'}}>
-                                                <div className='card-body d-flex flex-column'>
-                                                    <img src={talk.thumbnail} alt={talk.title} className='img-fluid mb-3' style={{border: '1px solid lightgray', borderRadius: '0%'}}></img>
-                                                    <h6><b>{talk.title}</b></h6>
-                                                    <div className='mt-auto'>
-                                                        <div><i className="fas fa-user mr-2" style={{color: 'gray'}}></i>{talk.speakers}</div>
-                                                        <div><span className="badge badge-pill badge-primary">{talk.conference}</span></div>
-                                                    </div>
+                            <div className='row'>
+                                {talks.map((talk, talkIndex) => 
+                                    <div className='col-lg-3 col-sm-6 mb-3' key={talkIndex}>
+                                        <div className='card h-100' style={{border: '0'}}>
+                                            <div className='card-body d-flex flex-column'>
+                                                <img src={talk.thumbnail} alt={talk.title} className='img-fluid mb-3' style={{border: '1px solid lightgray', borderRadius: '0%'}}></img>
+                                                <h6><b>{talk.title}</b></h6>
+                                                <div className='mt-auto'>
+                                                    <div><i className="fas fa-user mr-2" style={{color: 'gray'}}></i>{talk.speakers}</div>
+                                                    <div><span className="badge badge-pill badge-primary">{talk.conference}</span></div>
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
-                                </div>
-
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

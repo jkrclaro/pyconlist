@@ -29,10 +29,10 @@ class Footer extends React.Component {
                     <div className='col-lg-12'>
                         <div className='row'>
                             <div className='col-lg-6 mb-3'>
-                                <Link to='/contact' rel='nofollow'>Contact</Link>
+                                <a href='mailto:jkrclaro@gmail.com'>Contact</a>
                             </div>
                             <div className='col-lg-6 text-lg-right'>
-                                <span className='mr-5'>Made by John Claro</span>
+                                <span className='mr-5'>Made by <a href='https://www.jkrclaro.com'>John Claro</a></span>
                             </div>
                         </div>
                     </div>

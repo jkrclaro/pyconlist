@@ -43,11 +43,14 @@ class Header extends React.Component {
                     <div className="overlay-content">
                         <div className='container'>
                             <Link to='/' className='overlay-link' onClick={this.closeNav}>Home</Link>
-                            <Link to='/contact' className='overlay-link' onClick={this.closeNav}>Contact</Link>
+                            <Link to='/contact' className='overlay-link' onClick={this.closeNav}>Year</Link>
+                            <Link to='/contact' className='overlay-link' onClick={this.closeNav}>Location</Link>
+                            <Link to='/contact' className='overlay-link' onClick={this.closeNav}>Conference</Link>
+                            <Link to='/contact' className='overlay-link' onClick={this.closeNav}>Speakers</Link>
                             <br/>
                             <br/>
                             <br/>
-                            <a href="mailto:john@pytalks.com" className='overlay-link' rel='nofollow'>john@pytalks.com</a>
+                            <a href="mailto:jkrclaro@gmail.com" className='overlay-link' rel='nofollow'>Contact</a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +68,7 @@ class Header extends React.Component {
                                 <li className='nav-item mr-3'><Link to='/' className={`nav-link ${theme}-text`}><span className='mr-2'>Year</span> <i className='fas fa-caret-down'></i></Link></li>
                                 <li className='nav-item mr-3'><Link to='/contact' className={`nav-link ${theme}-text`}><span className='mr-2'>Location</span> <i className='fas fa-caret-down'></i></Link></li>
                                 <li className='nav-item mr-3'><Link to='/contact' className={`nav-link ${theme}-text`}><span className='mr-2'>Conference</span> <i className='fas fa-caret-down'></i></Link></li>
+                                <li className='nav-item mr-3'><Link to='/contact' className={`nav-link ${theme}-text`}><span className='mr-2'>Speakers</span> <i className='fas fa-caret-down'></i></Link></li>
                             </ul>
                         ) : (
                             <ul className="navbar-nav ml-auto">
