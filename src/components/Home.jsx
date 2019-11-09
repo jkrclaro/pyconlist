@@ -31,7 +31,7 @@ class Home extends React.Component {
     }
 
     render() {
-        const talks = require('../data/talks.json');
+        const talks = require('../talks.json');
         console.log(talks);
         return (
             <div className='layout'>
@@ -42,9 +42,11 @@ class Home extends React.Component {
                             <div className='col-lg-12'>
                                 <div className='row'>
                                     {talks.map((talk, talkIndex) => 
-                                        <div className='col-lg-3 mb-3' key={talkIndex}>
-                                            <img src={talk.thumbnail} alt={talk.title} className='img-fluid'></img>
-                                            <b>{talk.speaker} - {talk.title} - {talk.conference}</b>
+                                        <div className='col-lg-3 col-sm-6 mb-3' key={talkIndex}>
+                                            <img src={talk.thumbnail} alt={talk.title} className='img-fluid' style={{border: '1px solid lightgray'}}></img>
+                                            <div><b>{talk.title}</b></div>
+                                            <div><i className="fas fa-users"></i> {talk.speakers}</div>
+                                            <div><span className="badge badge-pill badge-primary">{talk.conference}</span></div>
                                         </div>
                                     )}
                                 </div>
