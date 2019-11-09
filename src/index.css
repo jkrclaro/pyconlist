@@ -4,6 +4,10 @@
   —-space: 2em 0;
 }
 
+* {
+  font-family: 'Open Sans';
+}
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -48,6 +52,10 @@
 }
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: 0 none;
+}
+
+.form-control {
+  border-radius: 0;
 }
 /* Bootstrap 4 --- */
 
