@@ -43,10 +43,16 @@ class Home extends React.Component {
                                 <div className='row'>
                                     {talks.map((talk, talkIndex) => 
                                         <div className='col-lg-3 col-sm-6 mb-3' key={talkIndex}>
-                                            <img src={talk.thumbnail} alt={talk.title} className='img-fluid' style={{border: '1px solid lightgray'}}></img>
-                                            <div><b>{talk.title}</b></div>
-                                            <div><i className="fas fa-users mr-2"></i>{talk.speakers}</div>
-                                            <div><span className="badge badge-pill badge-primary">{talk.conference}</span></div>
+                                            <div className='card h-100'>
+                                                <div className='card-body d-flex flex-column'>
+                                                    <img src={talk.thumbnail} alt={talk.title} className='img-fluid'></img>
+                                                    <h5>{talk.title}</h5>
+                                                    <div className='mt-auto'>
+                                                        <div><i className="fas fa-users mr-2"></i>{talk.speakers}</div>
+                                                        <div><span className="badge badge-pill badge-primary">{talk.conference}</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
