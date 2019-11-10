@@ -32,7 +32,7 @@ class Footer extends React.Component {
                                 <a href='mailto:jkrclaro@gmail.com'>Contact</a>
                             </div>
                             <div className='col-lg-6 text-lg-right'>
-                                <span className='mr-5'>Made by <a href='https://www.jkrclaro.com'>John Claro</a></span>
+                                <span>Made by <a href='https://www.jkrclaro.com'>John Claro</a></span>
                             </div>
                         </div>
                     </div>
