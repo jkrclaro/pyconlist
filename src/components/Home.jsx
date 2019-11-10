@@ -32,7 +32,6 @@ class Home extends React.Component {
 
     render() {
         const talks = require('../talks.json');
-        console.log(talks);
         return (
             <div className='layout'>
                 <div className='layout-Content'>
