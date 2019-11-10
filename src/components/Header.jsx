@@ -54,7 +54,7 @@ class Header extends React.Component {
                         {this.state.isDesktop ? (
                             <ul className="navbar-nav mx-auto">
                                 <li className='nav-item'></li>
-                                <li className='nav-item mr-3'><Link to='/' className={`nav-link ${theme}-text`}>PyTalks provides you with all Python related talks</Link></li>
+                                <li className='nav-item mr-3'><Link to='/' className={`nav-link ${theme}-text`}>PyTalks aggregates all Python related talks</Link></li>
                             </ul>
                         ) : (
                             <ul className="navbar-nav ml-auto">
