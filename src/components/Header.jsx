@@ -48,9 +48,9 @@ class Header extends React.Component {
                     </div>
                 </div>
 
-                <nav className="navbar navbar-expand-lg navbar-light bg__nav--white" style={{paddingTop: 50, paddingBottom: 20}}>
+                <nav className="navbar navbar-expand-lg navbar-light bg__nav--white">
                     <div className='container mb-2 mt-2'>
-                        <Link to='/' className='nav-link'><img src={logo} alt='logo' height='50' width='50'></img></Link>
+                        <Link to='/' className='nav-link'><img src={logo} alt='logo' height='30' width='30'></img></Link>
                         {this.state.isDesktop ? (
                             <ul className="navbar-nav ml-auto">
                                 <li className='nav-item'></li>

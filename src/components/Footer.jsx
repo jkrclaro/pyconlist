@@ -25,15 +25,11 @@ class Footer extends React.Component {
         return (
             <div>
                 <div className='container mt-5 mb-5'>
-                    <div className='col-lg-12'>
-                        <div className='row'>
-                            <div className='col-lg-6 mb-3'>
-                                <a href='mailto:jkrclaro@gmail.com'>Contact</a>
-                            </div>
-                            <div className='col-lg-6 text-lg-right'>
-                                <span>Made by <a href='https://www.jkrclaro.com'>John Claro</a></span>
-                            </div>
-                        </div>
+                    <hr/>
+                    <div className='col-lg-12 text-center'>
+                        <small> 
+                            Made by <a href='https://www.jkrclaro.com'>John Claro</a> | <a href='mailto:jkrclaro@gmail.com'>Contact</a>
+                        </small>
                     </div>
                 </div>
             </div>
