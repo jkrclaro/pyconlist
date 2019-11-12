@@ -12,7 +12,7 @@ class Home extends React.Component {
     updatePredicate = this.updatePredicate.bind(this);
 
     componentDidMount() {
-        document.title = 'PyTalks - PyTalks is a compilation of all Python related talks';
+        document.title = 'PyTalks';
         this.updatePredicate();
         window.addEventListener('resize', this.updatePredicate);
         window.scrollTo(0 ,0);
