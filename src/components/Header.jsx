@@ -52,7 +52,7 @@ class Header extends React.Component {
                     <div className='container mb-2 mt-2'>
                         <Link to='/' className='nav-link'><img src={logo} alt='logo' height='50' width='50'></img></Link>
                         {this.state.isDesktop ? (
-                            <ul className="navbar-nav mx-auto">
+                            <ul className="navbar-nav ml-auto">
                                 <li className='nav-item'></li>
                                 <li className='nav-item mr-3'><Link to='/' className={`nav-link ${theme}-text`}>PyTalks is a compilation of all Python related talks</Link></li>
                             </ul>
