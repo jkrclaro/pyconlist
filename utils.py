@@ -9,7 +9,8 @@ def print_to_json(data):
         '"video_url": "%s", '
         '"convention": "%s", '
         '"uploaded_at": "%s", '
-        '"channel_url": "%s"'
+        '"channel_url": "%s" ,'
+        '"categories": ["Data"]'
         '},' % (
             data['speakers'][0],
             data['title'],
@@ -24,8 +25,9 @@ def print_to_json(data):
 def main():
     with open('src/talks.json') as json_file:
         talks = json.loads(json_file.read())['data']
-        for talk in talks:
-            print_to_json(talk)
+        for index, talk in enumerate(talks):
+            if index >= 428:
+                print_to_json(talk)
 
 
 if __name__ == '__main__':
