@@ -6,6 +6,7 @@
 
 * {
   font-family: 'Open Sans';
+  background-color: #EEE;
 }
 
 .layout {
@@ -59,7 +60,14 @@
 }
 
 .badge {
-  border-radius: 0;
+  border-radius: 0px;
+}
+.badge-dark {
+  background-color: #111;
+}
+.badge-python {
+  background-color: #2B5B84;
+  color: #FFE873;
 }
 /* Bootstrap 4 --- */
 
