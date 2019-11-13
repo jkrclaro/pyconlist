@@ -35,7 +35,7 @@ def main():
                 'pip', 'asyncio', 'python2', 'python3', 'python', 'type',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Core'
+                    talk['category']['title'] = 'Category: Programming'
                     talk['category']['badge'] = 'python'
 
             for category in (
@@ -44,14 +44,6 @@ def main():
                 if category in title:
                     talk['category']['title'] = 'Category: Security'
                     talk['category']['badge'] = 'danger'
-
-            for category in (
-                'keynote', 'wrap up', 'lightning talk', 'remarks', 'thank you',
-                'panel discussion',
-            ):
-                if category in title:
-                    talk['category']['title'] = 'Category: Others'
-                    talk['category']['badge'] = 'light'
 
             for category in (
                 'contributor', 'blog', 'leader', 'maintaining',
@@ -81,6 +73,14 @@ def main():
                 if category in title:
                     talk['category']['title'] = 'Category: Data'
                     talk['category']['badge'] = 'info'
+
+            for category in (
+                'keynote', 'wrap up', 'lightning talk', 'remarks', 'thank you',
+                'panel discussion', 'music',
+            ):
+                if category in title:
+                    talk['category']['title'] = 'Category: Others'
+                    talk['category']['badge'] = 'light'
 
 
     with open(talks_filepath, 'w') as json_file:
