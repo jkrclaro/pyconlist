@@ -794,8 +794,8 @@
       "uploaded_at": "14-05-2019",
       "channel_url": "https://www.youtube.com/channel/UCxs2IIVXaEHHA4BtTiWZ2mQ",
       "category": {
-        "title": "Category: Others",
-        "badge": "light"
+        "title": "Category: Programming",
+        "badge": "python"
       }
     },
     {
@@ -4154,8 +4154,8 @@
       "uploaded_at": "18-05-2017",
       "channel_url": "https://www.youtube.com/channel/UCrJhliKNQ8g0qoE_zvL8eVg",
       "category": {
-        "title": "Category: Others",
-        "badge": "light"
+        "title": "Category: Programming",
+        "badge": "python"
       }
     },
     {
@@ -7066,8 +7066,8 @@
       "uploaded_at": "18-05-2016",
       "channel_url": "https://www.youtube.com/channel/UCwTD5zJbsQGJN75MwbykYNw",
       "category": {
-        "title": "Category: Data",
-        "badge": "info"
+        "title": "Category: Programming",
+        "badge": "python"
       }
     },
     {
@@ -8522,8 +8522,8 @@
       "uploaded_at": "18-05-2015",
       "channel_url": "https://www.youtube.com/channel/UCgxzjK6GuOHVKR_08TT4hJQ",
       "category": {
-        "title": "Category: Data",
-        "badge": "info"
+        "title": "Category: Programming",
+        "badge": "python"
       }
     },
     {

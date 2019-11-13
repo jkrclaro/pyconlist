@@ -33,6 +33,7 @@ def main():
             for category in (
                 'community', 'pep', 'data structure', 'algorithms', 'gil',
                 'pip', 'asyncio', 'python2', 'python3', 'python', 'type',
+                'descriptor',
             ):
                 if category in title:
                     talk['category']['title'] = 'Category: Programming'

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -7,7 +8,8 @@ import Footer from './Footer';
 class Home extends React.Component {
 
     state = {
-        isDesktop: false
+        isDesktop: false,
+        talks: require('../talks.json').data.slice(0, 30)
     }
     updatePredicate = this.updatePredicate.bind(this);
 
@@ -31,7 +33,6 @@ class Home extends React.Component {
     }
 
     render() {
-        const talks = require('../talks.json').data;
         return (
             <div className='layout'>
                 <div className='layout-Content'>
@@ -39,7 +40,7 @@ class Home extends React.Component {
                     <div className='invert-bg'>
                         <div className='container'>
 
-                            {talks.map((talk, talkIndex) => 
+                            {this.state.talks.map((talk, talkIndex) => 
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
                                     <span style={{color: 'gray'}}>{talkIndex + 1}.</span> <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
                                     <div>
@@ -47,7 +48,9 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             )}
-
+                            <div className='col-lg-12 mt-4'>
+                                <Link to='/talks?page=2'>More</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
