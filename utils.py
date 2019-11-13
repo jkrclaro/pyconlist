@@ -23,11 +23,19 @@ def print_to_json(data):
 
 
 def main():
-    with open('src/talks.json') as json_file:
+    talks_filepath = 'src/talks.json'
+    with open(talks_filepath) as json_file:
         talks = json.loads(json_file.read())['data']
-        for index, talk in enumerate(talks):
-            if index >= 428:
-                print_to_json(talk)
+        for talk in talks:
+            title = talk['title'].lower()
+
+            for category in ('deep learning', 'machine learning', 'data'):
+                if category in title:
+                    talk['category']['title'] = 'Data'
+                    talk['category']['badge'] = 'info'
+
+    with open(talks_filepath, 'w') as json_file:
+        json.dump({'data': talks}, json_file, indent=2)
 
 
 if __name__ == '__main__':
