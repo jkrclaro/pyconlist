@@ -9,7 +9,9 @@ class Home extends React.Component {
 
     state = {
         isDesktop: false,
-        talks: require('../talks.json').data.slice(0, 30)
+        talks: require('../talks.json').data,
+        currentPageNumber: 1,
+        talksPerPage: 30
     }
     updatePredicate = this.updatePredicate.bind(this);
 
@@ -32,7 +34,24 @@ class Home extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+    handleClick = (event) => {
+        this.setState({ currentPageNumber: event.target.id})
+    }
+
     render() {
+        const { talks, currentPageNumber, talksPerPage } = this.state;
+
+        const indexOfLastTalk = currentPageNumber * talksPerPage;
+        const indexOfFirstTalk = indexOfLastTalk - talksPerPage;
+        const currentTalks = talks.slice(indexOfFirstTalk, indexOfLastTalk);
+
+        const pageNumbers = [];
+        for (let pageNumber = 1; pageNumber <= Math.ceil(talks.length / talksPerPage); pageNumber++) {
+            pageNumbers.push(pageNumber)
+        }
+
+        console.log(indexOfFirstTalk, indexOfLastTalk, currentPageNumber)
+
         return (
             <div className='layout'>
                 <div className='layout-Content'>
@@ -40,7 +59,7 @@ class Home extends React.Component {
                     <div className='invert-bg'>
                         <div className='container'>
 
-                            {this.state.talks.map((talk, talkIndex) => 
+                            {currentTalks.map((talk, talkIndex) => 
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
                                     <span style={{color: 'gray'}}>{talkIndex + 1}.</span> <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
                                     <div>
@@ -48,8 +67,19 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             )}
-                            <div className='col-lg-12 mt-4'>
-                                <Link to='/talks?page=2'>More</Link>
+
+                            <div className='col-lg-12 text-center mt-4'>
+                                {pageNumbers.map(pageNumber => {
+                                    return (
+                                        <a key={pageNumber}
+                                            id={pageNumber}
+                                            href='#'
+                                            onClick={this.handleClick}
+                                            className={`btn btn-python mr-3 mb-3 ${pageNumber == currentPageNumber ? 'btn-active' : null}`}>
+                                            {pageNumber}
+                                        </a>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
