@@ -29,10 +29,36 @@ def main():
         for talk in talks:
             title = talk['title'].lower()
 
-            for category in ('deep learning', 'machine learning', 'data'):
+            for category in ('deep learning', 'machine learning', 'data', 'computational', 'statistics',):
                 if category in title:
-                    talk['category']['title'] = 'Data'
+                    talk['category']['title'] = 'Category: Data'
                     talk['category']['badge'] = 'info'
+
+            for category in ('exception', 'hacking', 'security',):
+                if category in title:
+                    talk['category']['title'] = 'Category: Security'
+                    talk['category']['badge'] = 'danger'
+
+            for category in ('keynote', 'wrap up', 'lightning talk', 'remarks', 'thank you',):
+                if category in title:
+                    talk['category']['title'] = 'Category: Others'
+                    talk['category']['badge'] = 'light'
+
+            for category in ('contributor', 'blog', 'leader', 'maintaining',):
+                if category in title:
+                    talk['category']['title'] = 'Category: Career'
+                    talk['category']['badge'] = 'success'
+
+            for category in ('server', 'web', 'django', 'flask', 'ORM', 'networking',):
+                if category in title:
+                    talk['category']['title'] = 'Category: Web'
+                    talk['category']['badge'] = 'primary'
+
+            for category in ('community', 'pep',):
+                if category in title:
+                    talk['category']['title'] = 'Category: Core'
+                    talk['category']['badge'] = 'python'
+
 
     with open(talks_filepath, 'w') as json_file:
         json.dump({'data': talks}, json_file, indent=2)
