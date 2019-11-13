@@ -43,7 +43,7 @@ class Home extends React.Component {
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
                                     <span style={{color: 'gray'}}>{talkIndex + 1}.</span> <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
                                     <div>
-                                        <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at }</small>
+                                        <small style={{color: 'gray'}}><span className="badge badge-primary">{talk.categories}</span> by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at }</small>
                                     </div>
                                 </div>
                             )}
