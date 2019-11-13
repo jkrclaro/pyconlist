@@ -50,7 +50,7 @@ def main():
                 'documentation', 'code review', 'readability',
                 'open source license', 'open source self-care',
                 'open source for newcomers', 'participating in open source',
-                'novice', 'n00bs',
+                'novice', 'n00bs', 'interview',
             ):
                 if category in title:
                     talk['category']['title'] = 'Category: Career'
@@ -59,7 +59,7 @@ def main():
             for category in (
                 'server', 'web', 'django', 'flask', 'ORM', 'networking',
                 'protocol', 'container', 'api', 'sqlalchemy', 'alembic',
-                'instagram', 'http',
+                'instagram', 'http', 'localization',
             ):
                 if category in title:
                     talk['category']['title'] = 'Category: Web'
