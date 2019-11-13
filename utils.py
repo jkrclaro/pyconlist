@@ -1,27 +1,6 @@
 import json
 
 
-def print_to_json(data):
-    print(
-        '{'
-        '"speakers": ["%s"], '
-        '"title": "%s", '
-        '"video_url": "%s", '
-        '"convention": "%s", '
-        '"uploaded_at": "%s", '
-        '"channel_url": "%s" ,'
-        '"categories": ["Data"]'
-        '},' % (
-            data['speakers'][0],
-            data['title'],
-            data['video_url'],
-            data['convention'],
-            data['uploaded_at'],
-            data['channel_url']
-        )
-    )
-
-
 def main():
     talks_filepath = 'src/talks.json'
     with open(talks_filepath) as json_file:
@@ -69,7 +48,7 @@ def main():
             for category in (
                 'deep learning', 'machine learning', 'data', 'computational',
                 'statistics', 'pyspark', 'network analysis', 'jupyter',
-                'ipython', 'pandas', 'diagnostic', 'hadoop',
+                'ipython', 'pandas', 'diagnostic', 'hadoop', 'numpy',
             ):
                 if category in title:
                     talk['category']['title'] = 'Category: Data'
