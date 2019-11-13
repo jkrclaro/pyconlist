@@ -1,9 +1,16 @@
 import json
 
 
-def print_format(data):
+def print_to_json(data):
     print(
-        '{"speakers": ["%s"], "title": "%s", "video_url": "%s", "convention": "%s", "uploaded_at": "%s", "channel_url": "%s"},' % (
+        '{'
+        '"speakers": ["%s"], '
+        '"title": "%s", '
+        '"video_url": "%s", '
+        '"convention": "%s", '
+        '"uploaded_at": "%s", '
+        '"channel_url": "%s"'
+        '},' % (
             data['speakers'][0],
             data['title'],
             data['video_url'],
@@ -18,7 +25,7 @@ def main():
     with open('src/talks.json') as json_file:
         talks = json.loads(json_file.read())['data']
         for talk in talks:
-            print_format(talk)
+            print_to_json(talk)
 
 
 if __name__ == '__main__':
