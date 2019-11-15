@@ -13,6 +13,8 @@ def main():
 
             for talk in talks:
                 title = talk['title'].lower()
+                video_url = talk['video_url']
+                talk['embed_url'] = video_url.replace('/watch?v=', '/embed/')
 
                 for category in categories:
                     for keyword in category['keywords']:
