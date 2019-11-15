@@ -1,10 +1,106 @@
 {
     "data": [
-        {"title": "Programming", "badge": "python", "keywords": ["community", "pep", "data structure", "algorithms", "gil", "pip", "asyncio", "python2", "python3", "python", "type", "descriptor", "testing", "bugs"]},
-        {"title": "Others", "badge": "light", "keywords": ["keynote", "wrap up", "lightning talk", "remarks", "thank you", "panel discussion", "music"]},
-        {"title": "Security", "badge": "danger", "keywords": ["exception", "hacking", "security", "threat"]},
-        {"title": "Career", "badge": "success", "keywords": ["contributor", "blog", "leader", "maintaining", "documentation", "code review", "readability", "open source license", "open source self-care", "open source for newcomers", "participating in open source", "novice", "n00bs", "interview"]},
-        {"title": "Web", "badge": "primary", "keywords": ["server", "web", "django", "flask", "ORM", "networking", "protocol", "container", "api", "sqlalchemy", "alembic", "instagram", "http", "localization"]},
-        {"title": "Data", "badge": "info", "keywords": ["deep learning", "machine learning", "data", "computational", "statistics", "pyspark", "network analysis", "jupyter", "ipython", "pandas", "diagnostic", "hadoop", "numpy"]}
+      {
+        "title": "Programming",
+        "badge": "python",
+        "keywords": [
+          "community",
+          "pep",
+          "data structure",
+          "algorithms",
+          "gil",
+          "pip",
+          "asyncio",
+          "python2",
+          "python3",
+          "python",
+          "type",
+          "descriptor",
+          "testing",
+          "bugs"
+        ]
+      },
+      {
+        "title": "Others",
+        "badge": "light",
+        "keywords": [
+          "keynote",
+          "wrap up",
+          "lightning talk",
+          "remarks",
+          "thank you",
+          "panel discussion",
+          "music"
+        ]
+      },
+      {
+        "title": "Security",
+        "badge": "danger",
+        "keywords": [
+          "exception",
+          "hacking",
+          "security",
+          "threat"
+        ]
+      },
+      {
+        "title": "Career",
+        "badge": "success",
+        "keywords": [
+          "contributor",
+          "blog",
+          "leader",
+          "maintaining",
+          "documentation",
+          "code review",
+          "readability",
+          "open source license",
+          "open source self-care",
+          "open source for newcomers",
+          "participating in open source",
+          "novice",
+          "n00bs",
+          "interview"
+        ]
+      },
+      {
+        "title": "Web",
+        "badge": "primary",
+        "keywords": [
+          "server",
+          "web",
+          "django",
+          "flask",
+          "ORM",
+          "networking",
+          "protocol",
+          "container",
+          "api",
+          "sqlalchemy",
+          "alembic",
+          "instagram",
+          "http",
+          "localization"
+        ]
+      },
+      {
+        "title": "Data",
+        "badge": "info",
+        "keywords": [
+          "deep learning",
+          "machine learning",
+          "data",
+          "computational",
+          "statistics",
+          "pyspark",
+          "network analysis",
+          "jupyter",
+          "ipython",
+          "pandas",
+          "diagnostic",
+          "hadoop",
+          "numpy"
+        ]
+      }
     ]
-}
+  }
