@@ -64,7 +64,7 @@
 .badge-dark {
   background-color: #111;
 }
-.badge-python {
+.badge-python, .badge-python:hover {
   background-color: #2B5B84;
   color: #FFE873;
 }
