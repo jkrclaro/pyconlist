@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -10,9 +9,8 @@ class Home extends React.Component {
     state = {
         isDesktop: false,
         talks: require('../talks.json').data,
-        currentPageNumber: 1,
-        talksPerPage: 30,
-        category: ''
+        categories: require('../categories.json').data,
+        currentCategory: ''
     }
     updatePredicate = this.updatePredicate.bind(this);
 
@@ -40,22 +38,22 @@ class Home extends React.Component {
     }
 
     updateCategory = (event) => {
-        console.log(event);
+        this.setState({ currentCategory: event.target.id });
     }
 
     render() {
-        const { talks, currentPageNumber, talksPerPage } = this.state;
+        const { talks, categories, currentCategory } = this.state;
 
-        const indexOfLastTalk = currentPageNumber * talksPerPage;
-        const indexOfFirstTalk = indexOfLastTalk - talksPerPage;
-        const currentTalks = talks.slice(indexOfFirstTalk, indexOfLastTalk);
-
-        const pageNumbers = [];
-        for (let pageNumber = 1; pageNumber <= Math.ceil(talks.length / talksPerPage); pageNumber++) {
-            pageNumbers.push(pageNumber)
+        let currentTalks = [];
+        if (currentCategory) {
+            for (let talk of talks) {
+                if (talk.category.title.toLowerCase() === currentCategory) {
+                    currentTalks.push(talk)
+                }
+            }
+        } else {
+            currentTalks = talks;
         }
-
-        const categories = require('../categories.json').data;
 
         return (
             <div className='layout'>
@@ -66,9 +64,13 @@ class Home extends React.Component {
 
                             <div className='col-lg-12 mb-3'>
                                 {categories.map((category, categoryIndex) =>
-                                    <Link to={`/c/${category.title.toLowerCase()}`} className={`badge badge-${category.badge} mr-1`} key={categoryIndex}>
+                                    <span   style={{cursor: 'pointer'}}
+                                            onClick={this.updateCategory}
+                                            id={category.title.toLowerCase()}
+                                            className={`badge badge-${category.badge} mr-1`}
+                                            key={categoryIndex}>
                                         {category.title}
-                                    </Link>
+                                    </span>
                                 )}
                             </div>
 
@@ -80,20 +82,6 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                             )}
-
-                            <div className='col-lg-12 text-center mt-4'>
-                                {pageNumbers.map(pageNumber => {
-                                    return (
-                                        <a key={pageNumber}
-                                            id={pageNumber}
-                                            href='#'
-                                            onClick={this.handleClick}
-                                            className={`btn btn-python mr-3 mb-3 ${pageNumber == currentPageNumber ? 'btn-active' : null}`}>
-                                            {pageNumber}
-                                        </a>
-                                    )
-                                })}
-                            </div>
                         </div>
                     </div>
                 </div>
