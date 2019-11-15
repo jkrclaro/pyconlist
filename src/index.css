@@ -68,13 +68,13 @@
   background-color: #2B5B84;
   color: #FFE873;
 }
-.btn-python {
+.btn-python, .btn-python:hover {
   background-color: #2B5B84;
   color: #FFE873;
 }
 .btn-active, .btn-python:hover {
-  background-color: #FFE873;
-  color: #2B5B84;
+  background-color: #4B8BBE;
+  color: #FFE873;
 } 
 /* Bootstrap 4 --- */
 
