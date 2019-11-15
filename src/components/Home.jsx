@@ -8,7 +8,7 @@ class Home extends React.Component {
 
     state = {
         isDesktop: false,
-        talks: require('../talks.json').data.slice(0, 3),
+        talks: require('../talks.json').data,
         categories: require('../categories.json').data,
         currentCategory: ''
     }
