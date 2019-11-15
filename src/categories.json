@@ -1,0 +1,8 @@
+[
+    {"title": "Programming", "badge": "python"},
+    {"title": "Core", "badge": "info"},
+    {"title": "Others", "badge": "light"},
+    {"title": "Security", "badge": "danger"},
+    {"title": "Career", "badge": "success"},
+    {"title": "Web", "badge": "primary"}
+]
