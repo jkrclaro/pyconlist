@@ -8,21 +8,21 @@ def main():
         for talk in talks:
             title = talk['title'].lower()
 
-            # This should be at the top because python is such a used word.
+            # This should be at the top because `python` is such a used word.
             for category in (
                 'community', 'pep', 'data structure', 'algorithms', 'gil',
                 'pip', 'asyncio', 'python2', 'python3', 'python', 'type',
-                'descriptor',
+                'descriptor', 'testing', 'bugs',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Programming'
+                    talk['category']['title'] = 'Programming'
                     talk['category']['badge'] = 'python'
 
             for category in (
-                'exception', 'hacking', 'security', 'threat', 'testing', 'bugs',
+                'exception', 'hacking', 'security', 'threat',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Security'
+                    talk['category']['title'] = 'Security'
                     talk['category']['badge'] = 'danger'
 
             for category in (
@@ -33,7 +33,7 @@ def main():
                 'novice', 'n00bs', 'interview',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Career'
+                    talk['category']['title'] = 'Career'
                     talk['category']['badge'] = 'success'
 
             for category in (
@@ -42,7 +42,7 @@ def main():
                 'instagram', 'http', 'localization',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Web'
+                    talk['category']['title'] = 'Web'
                     talk['category']['badge'] = 'primary'
 
             for category in (
@@ -51,7 +51,7 @@ def main():
                 'ipython', 'pandas', 'diagnostic', 'hadoop', 'numpy',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Data'
+                    talk['category']['title'] = 'Data'
                     talk['category']['badge'] = 'info'
 
             for category in (
@@ -59,7 +59,7 @@ def main():
                 'panel discussion', 'music',
             ):
                 if category in title:
-                    talk['category']['title'] = 'Category: Others'
+                    talk['category']['title'] = 'Others'
                     talk['category']['badge'] = 'light'
 
 
