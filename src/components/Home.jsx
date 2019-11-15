@@ -11,7 +11,8 @@ class Home extends React.Component {
         isDesktop: false,
         talks: require('../talks.json').data,
         currentPageNumber: 1,
-        talksPerPage: 30
+        talksPerPage: 30,
+        category: ''
     }
     updatePredicate = this.updatePredicate.bind(this);
 
@@ -38,6 +39,10 @@ class Home extends React.Component {
         this.setState({ currentPageNumber: event.target.id})
     }
 
+    updateCategory = (event) => {
+        console.log(event);
+    }
+
     render() {
         const { talks, currentPageNumber, talksPerPage } = this.state;
 
@@ -50,7 +55,7 @@ class Home extends React.Component {
             pageNumbers.push(pageNumber)
         }
 
-        const categories = require('../categories.json');
+        const categories = require('../categories.json').data;
 
         return (
             <div className='layout'>
@@ -61,9 +66,9 @@ class Home extends React.Component {
 
                             <div className='col-lg-12 mb-3'>
                                 {categories.map((category, categoryIndex) =>
-                                    <a href={`/c/${category.title.toLowerCase()}`} className={`badge badge-${category.badge} mr-1`} key={categoryIndex}>
+                                    <Link to={`/c/${category.title.toLowerCase()}`} className={`badge badge-${category.badge} mr-1`} key={categoryIndex}>
                                         {category.title}
-                                    </a>
+                                    </Link>
                                 )}
                             </div>
 
