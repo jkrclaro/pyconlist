@@ -50,7 +50,7 @@ class Home extends React.Component {
             pageNumbers.push(pageNumber)
         }
 
-        console.log(indexOfFirstTalk, indexOfLastTalk, currentPageNumber)
+        const categories = require('../categories.json');
 
         return (
             <div className='layout'>
@@ -58,6 +58,14 @@ class Home extends React.Component {
                     <Header />
                     <div className='invert-bg'>
                         <div className='container'>
+
+                            <div className='col-lg-12 mb-3'>
+                                {categories.map((category, categoryIndex) =>
+                                    <a href={`/c/${category.title.toLowerCase()}`} className={`badge badge-${category.badge} mr-1`} key={categoryIndex}>
+                                        {category.title}
+                                    </a>
+                                )}
+                            </div>
 
                             {currentTalks.map((talk, talkIndex) => 
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
