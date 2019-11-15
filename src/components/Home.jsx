@@ -26,7 +26,7 @@ class Home extends React.Component {
     };
 
     updatePredicate() {
-        this.setState({ isDesktop: window.innerWidth > 768 });
+        this.setState({ isDesktop: window.innerWidth > 576 });
     };
 
     handleChange(event) {
@@ -67,7 +67,7 @@ class Home extends React.Component {
                                     <span   style={{cursor: 'pointer'}}
                                             onClick={this.updateCategory}
                                             id={category.title.toLowerCase()}
-                                            className={`badge badge-${category.badge} mr-1`}
+                                            className={`btn btn-${category.badge} mr-1 mb-1`}
                                             key={categoryIndex}>
                                         {category.title}
                                     </span>
@@ -76,22 +76,50 @@ class Home extends React.Component {
 
                             {currentTalks.map((talk, talkIndex) => 
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
-                                        <span style={{color: 'gray'}}>{talkIndex + 1}.</span>
-                                        {/* <a data-toggle='collapse'
-                                            href={`#talk-${talkIndex}`}
-                                            role='button'
-                                            aria-expanded='false'
-                                            aria-controls={`talk-${talkIndex}`}
-                                            style={{color: '#2B5B84', fontWeight: 700}}>
-                                                {talk.title}
-                                        </a>
-                                        <div className='collapse' id={`talk-${talkIndex}`}>
-                                            <iframe width='50%' height='300' src={talk.embed_url}></iframe>
-                                        </div> */}
-                                        <span style={{color: 'gray'}}>{talkIndex + 1}.</span> <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
-                                    <div>
-                                        <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
-                                    </div>
+                                    {this.state.isDesktop ? (
+                                        <div className='row'>
+                                            <div className='col-1 text-sm-right'>
+                                                <span className='mr-3' style={{color: 'gray'}}>{talkIndex + 1}.</span>
+                                            </div>
+                                            <div className='col-11'>
+                                                <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
+                                                {/* <a data-toggle='collapse'
+                                                    href={`#talk-${talkIndex}`}
+                                                    role='button'
+                                                    aria-expanded='false'
+                                                    aria-controls={`talk-${talkIndex}`}
+                                                    style={{color: '#2B5B84', fontWeight: 700}}>
+                                                        {talk.title}
+                                                </a>
+                                                <div className='collapse' id={`talk-${talkIndex}`}>
+                                                    <iframe width='50%' height='300' src={talk.embed_url}></iframe>
+                                                </div> */}
+                                                <div>
+                                                    <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <span className='mr-3' style={{color: 'gray'}}>{talkIndex + 1}.</span>
+                                            <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
+                                            {/* <a data-toggle='collapse'
+                                                href={`#talk-${talkIndex}`}
+                                                role='button'
+                                                aria-expanded='false'
+                                                aria-controls={`talk-${talkIndex}`}
+                                                style={{color: '#2B5B84', fontWeight: 700}}>
+                                                    {talk.title}
+                                            </a>
+                                            <div className='collapse' id={`talk-${talkIndex}`}>
+                                                <iframe width='50%' height='300' src={talk.embed_url}></iframe>
+                                            </div> */}
+                                            <div>
+                                                <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
+                                            </div>
+                                        </div>
+                                    )}
+
                                 </div>
                             )}
                         </div>
