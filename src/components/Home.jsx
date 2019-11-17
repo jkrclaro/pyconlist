@@ -19,6 +19,29 @@ class Home extends React.Component {
         this.updatePredicate();
         window.addEventListener('resize', this.updatePredicate);
         window.scrollTo(0 ,0);
+
+        const youtube = document.querySelectorAll('.youtube');
+
+        for (let index=0; index < youtube.length; index++) {
+            const source = `https://img.youtube.com/vi/${youtube[index].dataset.embed}/sddefault.jpg`;
+            
+            const image = new Image();
+            image.src = source;
+            image.addEventListener('load', function() {
+                youtube[index].appendChild(image);
+            }(index))
+
+
+            youtube[index].addEventListener('click', function() {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.setAttribute('src', `https://www.youtube.com/embed/${this.dataset.embed}?rel=0&showinfo=0&autoplay=1`)
+                this.innerHTML = '';
+                this.appendChild(iframe);
+            })
+        }
+
     };
 
     componentWillUnmount() {
@@ -76,34 +99,13 @@ class Home extends React.Component {
 
                             {currentTalks.map((talk, talkIndex) => 
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
-                                    {this.state.isDesktop ? (
-                                        <div className='row'>
-                                            <div className='col-1 text-sm-right'>
-                                                <span className='mr-3' style={{color: 'gray'}}>{talkIndex + 1}.</span>
-                                            </div>
-                                            <div className='col-11'>
-                                                <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
-                                                {/* <a data-toggle='collapse'
-                                                    href={`#talk-${talkIndex}`}
-                                                    role='button'
-                                                    aria-expanded='false'
-                                                    aria-controls={`talk-${talkIndex}`}
-                                                    style={{color: '#2B5B84', fontWeight: 700}}>
-                                                        {talk.title}
-                                                </a>
-                                                <div className='collapse' id={`talk-${talkIndex}`}>
-                                                    <iframe width='50%' height='300' src={talk.embed_url}></iframe>
-                                                </div> */}
-                                                <div>
-                                                    <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div>
+                                    <div className='row'>
+                                        <div className='col-1 text-sm-right'>
                                             <span className='mr-3' style={{color: 'gray'}}>{talkIndex + 1}.</span>
-                                            <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a>
-                                            {/* <a data-toggle='collapse'
+                                        </div>
+                                        <div className='col-11'>
+                                            {/* <a href={talk.video_url} style={{color: '#2B5B84', fontWeight: 700}}>{talk.title}</a> */}
+                                            <a data-toggle='collapse'
                                                 href={`#talk-${talkIndex}`}
                                                 role='button'
                                                 aria-expanded='false'
@@ -112,14 +114,15 @@ class Home extends React.Component {
                                                     {talk.title}
                                             </a>
                                             <div className='collapse' id={`talk-${talkIndex}`}>
-                                                <iframe width='50%' height='300' src={talk.embed_url}></iframe>
-                                            </div> */}
+                                                <div className='youtube' data-embed={talk.youtube_id}>
+                                                    <div className='play-button'></div>
+                                                </div>
+                                            </div>
                                             <div>
                                                 <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
                                             </div>
                                         </div>
-                                    )}
-
+                                    </div>
                                 </div>
                             )}
                         </div>
