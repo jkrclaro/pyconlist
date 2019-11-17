@@ -16,6 +16,8 @@ def main():
                 video_url = talk['video_url']
                 talk['embed_url'] = video_url.replace('/watch?v=', '/embed/')
 
+                talk['youtube_id'] = video_url.replace('https://www.youtube.com/watch?v=', '')
+
                 for category in categories:
                     for keyword in category['keywords']:
                         if keyword in title:
