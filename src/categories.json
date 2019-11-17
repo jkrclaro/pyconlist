@@ -99,7 +99,8 @@
           "pandas",
           "diagnostic",
           "hadoop",
-          "numpy"
+          "numpy",
+          "calculus"
         ]
       }
     ]
