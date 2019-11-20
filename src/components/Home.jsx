@@ -25,7 +25,7 @@ class Home extends React.Component {
         window.addEventListener('resize', this.updatePredicate);
         window.scrollTo(0 ,0);
 
-        this.updateYoutubeIframes();
+        this.updateYoutubeFrames();
 
     };
 
@@ -48,6 +48,8 @@ class Home extends React.Component {
     updateCategory = (event) => {
         const category = event.target.id.toLowerCase();
 
+        this.closeAllYoutubeFrames()
+
         let categoryTalks = [];
         for (let talk of INITIAL_STATE.talks) {
             if (talk.category.title.toLowerCase() === category) {
@@ -55,11 +57,20 @@ class Home extends React.Component {
             }
         }
         this.setState({ talks: categoryTalks }, function() {
-            this.updateYoutubeIframes();
+            this.updateYoutubeFrames();
         });
     }
 
-    updateYoutubeIframes = (event) => {
+    closeAllYoutubeFrames() {
+        const iframes = document.getElementsByTagName("iframe");
+
+        for (let index=0; index < iframes.length; index++) {
+            const iframe = iframes[index];
+            iframe.setAttribute('src', '#')
+        }
+    }
+
+    updateYoutubeFrames = (event) => {
         const youtubeList = document.querySelectorAll('.youtube');
 
         for (let index=0; index < youtubeList.length; index++) {
@@ -85,7 +96,8 @@ class Home extends React.Component {
     }
 
     resetCategory = (event) => {
-        this.setState({ talks: INITIAL_STATE.talks, categories: INITIAL_STATE.categories })
+        const { talks, categories } = INITIAL_STATE;
+        this.setState({ talks, categories })
     }
 
     render() {
