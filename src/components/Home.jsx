@@ -3,15 +3,20 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
+const INITIAL_STATE = {
+    talks: require('../talks.json').data,
+    categories: require('../categories.json').data
+}
+
 
 class Home extends React.Component {
 
     state = {
         isDesktop: false,
-        talks: require('../talks.json').data,
-        categories: require('../categories.json').data,
-        currentCategory: ''
-    }
+        talks: INITIAL_STATE.talks,
+        categories: INITIAL_STATE.categories
+    };
+
     updatePredicate = this.updatePredicate.bind(this);
 
     componentDidMount() {
@@ -20,27 +25,7 @@ class Home extends React.Component {
         window.addEventListener('resize', this.updatePredicate);
         window.scrollTo(0 ,0);
 
-        const youtube = document.querySelectorAll('.youtube');
-
-        for (let index=0; index < youtube.length; index++) {
-            const source = `https://img.youtube.com/vi/${youtube[index].dataset.embed}/sddefault.jpg`;
-            
-            const image = new Image();
-            image.src = source;
-            image.addEventListener('load', function() {
-                youtube[index].appendChild(image);
-            }(index))
-
-
-            youtube[index].addEventListener('click', function() {
-                const iframe = document.createElement('iframe');
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.setAttribute('src', `https://www.youtube.com/embed/${this.dataset.embed}?rel=0&showinfo=0&autoplay=1`)
-                this.innerHTML = '';
-                this.appendChild(iframe);
-            })
-        }
+        this.updateYoutubeIframes();
 
     };
 
@@ -61,22 +46,50 @@ class Home extends React.Component {
     }
 
     updateCategory = (event) => {
-        this.setState({ currentCategory: event.target.id });
+        const category = event.target.id.toLowerCase();
+
+        let categoryTalks = [];
+        for (let talk of INITIAL_STATE.talks) {
+            if (talk.category.title.toLowerCase() === category) {
+                categoryTalks.push(talk)
+            }
+        }
+        this.setState({ talks: categoryTalks }, function() {
+            this.updateYoutubeIframes();
+        });
+    }
+
+    updateYoutubeIframes = (event) => {
+        const youtubeList = document.querySelectorAll('.youtube');
+
+        for (let index=0; index < youtubeList.length; index++) {
+            const youtube = youtubeList[index];
+            const source = `https://img.youtube.com/vi/${youtube.dataset.embed}/sddefault.jpg`;
+
+            const image = new Image();
+            image.src = source;
+            image.addEventListener('load', function() {
+                youtube.appendChild(image);
+            }(index))
+
+
+            youtube.addEventListener('click', function() {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.setAttribute('src', `https://www.youtube.com/embed/${this.dataset.embed}?rel=0&showinfo=0&autoplay=1`)
+                this.innerHTML = '';
+                this.appendChild(iframe);
+            })
+        }
+    }
+
+    resetCategory = (event) => {
+        this.setState({ talks: INITIAL_STATE.talks, categories: INITIAL_STATE.categories })
     }
 
     render() {
-        const { talks, categories, currentCategory } = this.state;
-
-        let currentTalks = [];
-        if (currentCategory) {
-            for (let talk of talks) {
-                if (talk.category.title.toLowerCase() === currentCategory) {
-                    currentTalks.push(talk)
-                }
-            }
-        } else {
-            currentTalks = talks;
-        }
+        const { talks, categories } = this.state;
 
         return (
             <div className='layout'>
@@ -97,7 +110,7 @@ class Home extends React.Component {
                                 )}
                             </div>
 
-                            {currentTalks.map((talk, talkIndex) => 
+                            {talks.map((talk, talkIndex) =>
                                 <div className='col-lg-12 mb-2' key={talkIndex}>
                                     <div className='row'>
                                         <div className='col-1 text-sm-right'>
