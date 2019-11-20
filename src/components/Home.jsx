@@ -46,6 +46,8 @@ class Home extends React.Component {
     }
 
     updateCategory = (event) => {
+        window.scrollTo(0 ,0);
+
         const category = event.target.id.toLowerCase();
 
         this.closeAllYoutubeFrames()
