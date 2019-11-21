@@ -3,10 +3,14 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 
+
+const talksData = require('../talks.json').data;
+const categoriesData = require('../categories.json').data;
+
 const INITIAL_STATE = {
-    talks: require('../talks.json').data,
-    categories: require('../categories.json').data,
-    currentCategory: ''
+    talks: talksData,
+    categories: [{'title': 'All'}].concat(categoriesData),
+    currentCategory: 'all'
 }
 
 
@@ -73,44 +77,36 @@ class Home extends React.Component {
         }
     }
 
-    resetCategory(category) {
+    resetCategory() {
         const { talks, categories, currentCategory } = INITIAL_STATE;
         this.setState({ talks, categories, currentCategory });
 
-        let categoryTalks = [];
-        for (let talk of INITIAL_STATE.talks) {
-            if (talk.category.title.toLowerCase() === category) {
-                categoryTalks.push(talk)
-            }
-        }
-        this.setState({ talks: categoryTalks }, function() {
+        this.setState({ talks }, function() {
             this.updateYoutubeFrames();
         });
     }
 
     handleChange = (event) => {
-        const { currentCategory } = this.state;
         window.scrollTo(0 ,0);
 
         const category = event.target.value.toLowerCase();
 
-        if (category === currentCategory) {
+        if (category === 'all') {
             this.resetCategory(category)
         } else {
             this.setState({ currentCategory: category });
-        }
+            this.closeAllYoutubeFrames()
 
-        this.closeAllYoutubeFrames()
-
-        let categoryTalks = [];
-        for (let talk of INITIAL_STATE.talks) {
-            if (talk.category.title.toLowerCase() === category) {
-                categoryTalks.push(talk)
+            let categoryTalks = [];
+            for (let talk of INITIAL_STATE.talks) {
+                if (talk.category.title.toLowerCase() === category) {
+                    categoryTalks.push(talk)
+                }
             }
+            this.setState({ talks: categoryTalks }, function() {
+                this.updateYoutubeFrames();
+            });
         }
-        this.setState({ talks: categoryTalks }, function() {
-            this.updateYoutubeFrames();
-        });
     }
 
     render() {
@@ -124,11 +120,17 @@ class Home extends React.Component {
                         <div className='container'>
 
                             <div className='col-lg-12 mb-3'>
-                                <select onChange={this.handleChange} value={currentCategory}>
-                                    {categories.map((category, categoryIndex) =>
-                                        <option key={categoryIndex} value={category.title.toLowerCase()}>{category.title}</option>
-                                    )}
-                                </select>
+                                <div className='row'>
+                                    <div className='col-lg-4'></div>
+                                    <div className='col-lg-4'>
+                                        <select className='custom-select' onChange={this.handleChange} value={currentCategory}>
+                                            {categories.map((category, categoryIndex) =>
+                                                <option key={categoryIndex} value={category.title.toLowerCase()}>{category.title}</option>
+                                            )}
+                                        </select>
+                                    </div>
+                                    <div className='col-lg-4'></div>
+                                </div>
                             </div>
 
                             {talks.map((talk, talkIndex) =>
@@ -153,7 +155,7 @@ class Home extends React.Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <small style={{color: 'gray'}}>by <a href='#' style={{color: '#CE9C57'}}>{talk.speakers}</a> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
+                                                <small style={{color: 'gray'}}>by <span style={{color: '#CE9C57'}}>{talk.speakers}</span> | {talk.uploaded_at } | <span className={`badge badge-${talk.category.badge}`}>{talk.category.title}</span></small>
                                             </div>
                                         </div>
                                     </div>
