@@ -5,7 +5,8 @@ import Footer from './Footer';
 
 const INITIAL_STATE = {
     talks: require('../talks.json').data,
-    categories: require('../categories.json').data
+    categories: require('../categories.json').data,
+    currentCategory: ''
 }
 
 
@@ -14,7 +15,8 @@ class Home extends React.Component {
     state = {
         isDesktop: false,
         talks: INITIAL_STATE.talks,
-        categories: INITIAL_STATE.categories
+        categories: INITIAL_STATE.categories,
+        currentCategory: INITIAL_STATE.currentCategory
     };
 
     updatePredicate = this.updatePredicate.bind(this);
@@ -36,32 +38,6 @@ class Home extends React.Component {
     updatePredicate() {
         this.setState({ isDesktop: window.innerWidth > 576 });
     };
-
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-    handleClick = (event) => {
-        this.setState({ currentPageNumber: event.target.id})
-    }
-
-    updateCategory = (event) => {
-        window.scrollTo(0 ,0);
-
-        const category = event.target.id.toLowerCase();
-
-        this.closeAllYoutubeFrames()
-
-        let categoryTalks = [];
-        for (let talk of INITIAL_STATE.talks) {
-            if (talk.category.title.toLowerCase() === category) {
-                categoryTalks.push(talk)
-            }
-        }
-        this.setState({ talks: categoryTalks }, function() {
-            this.updateYoutubeFrames();
-        });
-    }
 
     closeAllYoutubeFrames() {
         const iframes = document.getElementsByTagName("iframe");
@@ -97,13 +73,48 @@ class Home extends React.Component {
         }
     }
 
-    resetCategory = (event) => {
-        const { talks, categories } = INITIAL_STATE;
-        this.setState({ talks, categories })
+    resetCategory(category) {
+        const { talks, categories, currentCategory } = INITIAL_STATE;
+        this.setState({ talks, categories, currentCategory });
+
+        let categoryTalks = [];
+        for (let talk of INITIAL_STATE.talks) {
+            if (talk.category.title.toLowerCase() === category) {
+                categoryTalks.push(talk)
+            }
+        }
+        this.setState({ talks: categoryTalks }, function() {
+            this.updateYoutubeFrames();
+        });
+    }
+
+    handleChange = (event) => {
+        const { currentCategory } = this.state;
+        window.scrollTo(0 ,0);
+
+        const category = event.target.value.toLowerCase();
+
+        if (category === currentCategory) {
+            this.resetCategory(category)
+        } else {
+            this.setState({ currentCategory: category });
+        }
+
+        this.closeAllYoutubeFrames()
+
+        let categoryTalks = [];
+        for (let talk of INITIAL_STATE.talks) {
+            if (talk.category.title.toLowerCase() === category) {
+                categoryTalks.push(talk)
+            }
+        }
+        this.setState({ talks: categoryTalks }, function() {
+            this.updateYoutubeFrames();
+        });
     }
 
     render() {
-        const { talks, categories } = this.state;
+        const { talks, categories, currentCategory } = this.state;
 
         return (
             <div className='layout'>
@@ -113,15 +124,11 @@ class Home extends React.Component {
                         <div className='container'>
 
                             <div className='col-lg-12 mb-3'>
-                                {categories.map((category, categoryIndex) =>
-                                    <span   style={{cursor: 'pointer'}}
-                                            onClick={this.updateCategory}
-                                            id={category.title.toLowerCase()}
-                                            className={`btn btn-${category.badge} mr-1 mb-1`}
-                                            key={categoryIndex}>
-                                        {category.title}
-                                    </span>
-                                )}
+                                <select onChange={this.handleChange} value={currentCategory}>
+                                    {categories.map((category, categoryIndex) =>
+                                        <option key={categoryIndex} value={category.title.toLowerCase()}>{category.title}</option>
+                                    )}
+                                </select>
                             </div>
 
                             {talks.map((talk, talkIndex) =>
